@@ -1,0 +1,19 @@
+{
+    "editor.formatOnSave": false,
+    "files.autoSave": "onFocusChange",
+    "C_Cpp.default.compilerPath": "C:/MinGW/bin/g++.exe",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cpptools",
+    "files.associations": {
+        "*.h": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp",
+        "xtree": "cpp",
+        "set": "cpp",
+        "map": "cpp",
+        "xutility": "cpp",
+        "initializer_list": "cpp",
+        "xstring": "cpp",
+        "cmath": "cpp",
+        "algorithm": "cpp"
+    }
+}
