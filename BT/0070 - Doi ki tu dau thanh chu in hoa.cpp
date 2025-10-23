@@ -11,21 +11,16 @@ int main(){
     bool check = false;
     
     for(int i = 0; i < s.size(); i++){
-        if(check){
+        if(check){                 // Thực thi cờ
             s[i] = toupper(s[i]);
-            check = false;
+            check = false;              // Hủy cờ đánh dấu
         }
-        
-        if(s[i] == ' '){
-            check = true;
-        }
+        // Đánh dấu cờ
+        if(s[i] == ' ') check = true;
     }
-    
     cout << s;
-
-    return 0;
 }
 /* Dạng bài ĐÁNH DẤU ( Sài 2 điều kiện )
 1 điều kiện để đánh dấu
-1 điều kiện để thực hiện khi đã thỏa điều kiện
+1 điều kiện để thực hiện khi đã thỏa điều kiện và nhớ hủy đánh dấu sau khi thực hiện xong nếu cần
 */

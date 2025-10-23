@@ -36,7 +36,11 @@ int main(){
     }
   }
 
-    // Sắp vector a giảm dần để tìm ra result lớn nhất
+    // Sắp vector a tăng dần để tìm ra SNT lớn nhất
     sort(a.begin(), a.end());
-    cout << a.back();
+    cout << a.back();          
 }
+/*
+v.front : Phần tử đầu mảng
+v.back : Phần tử cuối mảng
+*/

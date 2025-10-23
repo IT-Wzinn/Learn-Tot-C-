@@ -14,7 +14,7 @@ void VeHCN(int d, int r){
 }
 
 int main(){
-     int d,r;
+    int d,r;
     cin >> d >> r;
     VeHCN(d,r);
 }

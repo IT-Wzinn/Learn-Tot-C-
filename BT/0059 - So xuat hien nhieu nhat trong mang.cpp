@@ -1,29 +1,48 @@
 #include <iostream>
-#include <vector>
-#include <map>
 using namespace std;
 int main(){
     int n;
     cin >> n;
-
-    vector<int> v(n);
+    
+    vector<int> mang(n);
     map<int,int> m;
 
     for(int i = 0; i < n; i++){
-        cin >> v[i];
-        m[v[i]]++;
+        cin >> mang[i];
+        m[mang[i]]++;
     }
 
-    int a = v[0];
+    int a = mang[0];
     int max = m[a];
 
     for(int i = 0; i < n; i++){
-        if(max < m[v[i]]){
-            max = m[v[i]];
-            a = v[i];
+        if(max < m[mang[i]]){
+           max = m[mang[i]];
+           a = mang[i];
         }
     }
-
-    cout << "Số xuất hiện nhiều nhất là: " << a << " với số lần " << max;
-    
+    cout << a << " " << max;
 }
+
+
+/*
+Input #1 
+14
+4
+-4
+-1
+-4
+2
+2
+2
+5
+1
+-2
+-4
+2
+-5
+1
+
+Output #1 
+2 4
+*/

@@ -20,10 +20,10 @@ double dientich(double a, double b, double c) {
 }
 
 int main() {
-    double a, b, c;
-    nhap(a, b, c);
-    double cv = chuvi(a, b, c);
-    double dt = dientich(a, b, c);
+    double x, y, z;
+    nhap(x, y, z);
+    double cv = chuvi(x, y, z);
+    double dt = dientich(x, y, z);
     cout << fixed << setprecision(1) << cv << " ";
     cout << fixed << setprecision(3) << dt;
     return 0;

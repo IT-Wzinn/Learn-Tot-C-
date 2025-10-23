@@ -1,18 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <iomanip>    //fixed, setprecision
+#include <iomanip>     
 using namespace std;
 
 //Kiểm tra số Nguyên tố
 bool Isprime(int n){
-    if(n<=1){
-        return false;
-    }
+    if(n<=1) return false;
     for(int i = 2; i <= sqrt(n); i++){
-        if(n%i==0){
-            return false;
-        }
+        if(n%i==0) return false;
     }
     return true;
 }
@@ -32,20 +28,14 @@ int main(){
 
     //Kiểm tra từng số trong mảng xem phải số Isprime không
     int sum = 0, count = 0;
-
     for(int i = 0; i < a.size(); i++){
         if(Isprime(a[i])){
             sum += a[i];
             count++;
         }
     }
-
     
-    if(count>0){
-        cout << "Trung bình số nguyên tố: " << fixed << setprecision(2) << double(sum)/count;
-    }
-    else{
-        cout << "-";
-    }
-    return 0;
+    if(count>0) cout << "Trung bình số nguyên tố: " << fixed << setprecision(2) << double(sum)/count;
+   
+    else cout << "-";
 }

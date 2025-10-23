@@ -14,7 +14,6 @@ Các Space trên Git   : Staged, Changes, Graph, Working Dic
 | D       | File đã bị xóa                                        | Git phát hiện file biến mất                |
 
 =======================================================================================================================================================================================================================================================================================================
-             
                                         1) Repository
 git init
 git config --global user.name "Lư Quốc Vinh"
@@ -32,10 +31,10 @@ git log --oneline --graph --all --decorate
 
 git branch " "
 git checkout -b " " hoặc git switch -c " " : Tạo nhánh và nhảy vào nhánh đó ngay 
-(**) git branch -vv : Xem HEAD đang trỏ tới nhánh nào, nhánh nào Behind/Ahead ( Sau/Trước ) remote bao nhiêu commit
+(**) git branch -vv : Xem HEAD đang trỏ tới nhánh nào, nhánh nào Ahead/Behind ( Trước/Sau ) remote bao nhiêu commit
 
 =======================================================================================================================================================================================================================================================================================================
-                             2) Reset ( Thao tác trên repo bằng commit )
+                             2) Reset ( Tác động toàn bộ Repo )
                                           
 1. git reset --soft HEAD~1  : Xóa commit, đem hết đống đó vào staged        (    Nếu có trùng file thì ưu tiên  )
 2. git reset --mixed HEAD~1 : Xóa commit, đem hết đống đó vào working dic   (             file mới nhất         )
@@ -47,7 +46,7 @@ git reflog                     }      Repository sẽ quay
 git reset --hard "commit-hash" } trở về trạng thái của commit đó 
 
 =======================================================================================================================================================================================================================================================================================================
-                               3) Restore ( Thao tác trên wkd bằng commit )
+                               3) Restore ( Tác động trên WKD )
 
 1. git restore <file> : Khôi phục file trong Working dir về lại giống file trong Staged 
 2. git restore .      : Khôi phục toàn bộ file               //
@@ -58,10 +57,10 @@ git reset --hard "commit-hash" } trở về trạng thái của commit đó
 =======================================================================================================================================================================================================================================================================================================
                                     4) Rebase 
 
-(**) git checkout Nhanhphu ==> git rebase main ==> commit của Nhanhphu nằm trên commit của nhánh main ( vẫn đang ở trong nhánh Nhanhphu )
+(**) git checkout Nhanhphu ==> git rebase main ==> commit của Nhanhphu bị đổi hash và nằm trên commit của nhánh main ( Vẫn đang ở trong nhánh Nhanhphu )
 
 
-(*) git rebase -i <commit> :  Mở danh sách tất cả commit nằm sau commit đó để chỉnh sửa, gộp, xóa, đổi message,…
+(*) git rebase -i <commit>  :  Mở danh sách tất cả commit nằm sau commit đó để chỉnh sửa, gộp, xóa, đổi message,…
 (**) git rebase -i HEAD~n   :  Mở n commit gần nhất (tính từ HEAD trở về trước) để chỉnh sửa hoặc gộp
 
 | Lệnh                     | Chức năng                                | Dùng khi nào                 |
@@ -91,7 +90,6 @@ git cherry-pick <commit-hash>       }       nội dung giống commit gốc, nh�
 git cherry-pick <commit-đầu>^..<commit-cuối> ==> Cherry-pick 1 dãy commit 
                                    
 =======================================================================================================================================================================================================================================================================================================
-
                                   6) So sánh Merge / Rebase / Cherry-pick
 
 | Tiêu chí                         | Merge                                                                 | Rebase                                                                            | Cherry-pick                                                             |
@@ -118,8 +116,24 @@ git cherry-pick <commit-đầu>^..<commit-cuối> ==> Cherry-pick 1 dãy commit
 ==> Cả 3 đều dùng được --continue, --abort, --skip do cả 3 đều là Multi-step process (Quy trình nhiều bước)
 
 
-=======================================================================================================================================================================================================================================================================================================
 
+                                                        Merge 
+1) Nếu main không thêm commit mới sau khi tạo nhánh thì khi merge không tạo Merge Commit : Fast Foward 
+2) Nếu main có tạo thêm commit sau khi tạo nhánh thì khi merge sẽ tạo ra thêm 1 Merge Commit : Three way Merge
+3) Nếu có chỉnh sửa cùng dòng và cùng file thì khi merge 2 nhánh sẽ xảy ra Conflict sau khi giải quyết xong thì kết quả cuối cùng sẽ nằm ở Merge Commit : Merge Conflict 
+
+
+                                                        Rebase 
+1) Dục toàn bộ nhánh được rebase vào bên dưới các commit của nhánh đang đứng và đổi hash của các commit của nhánh đang đứng 
+2) Không có Merge Commit 
+3) Nếu có conflict thì kết quả sau khi giải quyết conflict sẽ nằm ở các commit của nhánh đang đứng
+
+                                                     Cherry-pick
+1) Dục lên trên đầu và thay đổi hash của commit bị cherry-pick vào nhánh đang đứng 
+2) Không có Merge Commit
+3) Nếu có conflict thì kết quả sau khi giải quyết conflict sẽ nằm ở commit bị cherry-pick
+
+=======================================================================================================================================================================================================================================================================================================
                                     7) Nhánh
 
 git checkout <commit-hash>    } Tạo nhánh từ commit
@@ -136,16 +150,23 @@ git push origin --delete <branch-name> : Xóa nhánh remote
 
 
 Đăng nhánh lên remote và theo dõi nhánh đó (-u) :  git push -u origin Nhanh1
-Push ghi đè local lên nhánh remote              :  git push origin Nhanh1 --force 
+Push ghi đè local lên nhánh remote (-f)         :  git push origin Nhanh1 --force 
 
 =========================================================================================================================================================================================================================================================================================================
-                        8) Những lệnh để xem thông tin thông dụng trong Git 
+                        8) Những lệnh thông dụng trong Git 
 
 git status                      : thông tin của local và remote, nhánh nào trước/sau nhánh nào bao nhiêu commit   
 git log --oneline               : xem thông tin commit ngắn gọn trên 1 dòng
 git log --oneline --graph --all : xem các commit dưới dạng biểu đồ 
 git branch -vv                  : xem commit mới nhất của mọi branch và xem nhánh nào đang theo dõi nhánh nào 
 git reflog                      : xem các bước di chuyển của HEAD 
+
+
+git reflog, git reset --hard <hash> : quay ngược lại trạng thái của repo lúc head đang ở hash đó 
+git rebase --i <commit-id> : chỉnh sửa các commit
+git push origin main --force : ghi đè local lên remote 
+git branch -d/-D <branch-name> : xóa nhánh local  
+git push origin --delete <branch-name> : xóa nhánh trên remote 
 
 ==========================================================================================================================================================================================================================================================================================================
                                 9) Lặt vặt 
@@ -259,7 +280,8 @@ origin/HEAD -> origin/main = nhánh mặc định trên remote là main
 Theo dõi = Upstream = Tracking
 
 =================================================================================================================================================================================================================================================================================================================================================================================================================================
-                                      Đọc bảng Graph của một Repository cụ thể 
+
+                                          Đọc bảng Graph của một Repository cụ thể 
 
 Commit 11: 	d910568 (HEAD -> main, origin/main, origin/HEAD) Merge branch 'main' of https://github.com/IT-Wzinn/Thumucmoitrenremote
 Commit 10: 	aeda910 Add 4.cpp
@@ -308,8 +330,6 @@ Commit 7 : Add 3.cpp (Nhanh2) }     Có commit mới sau khi tách nhánh, có x
 
 Commit 9 : Add 4.cpp          }           Commit 11: Muốn push nhưng gặp Non fast Foward ( Commit mới nhất của Local ≠ Remote (Add 4.cpp ≠ Create Fileremote) )
 Commit 10 : Create Fileremote }                      ==> Phải pull nhưng khi pull thì cũng có commit mới sau commit chung với nhánh main nên cũng tạo Merge commit rồi mới push tiếp lên 
-
-
 
 
 

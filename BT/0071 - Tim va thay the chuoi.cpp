@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 int main(){
     string s;
     getline(cin,s);
@@ -16,37 +15,28 @@ int main(){
         }
         result += s[i];
     }
-
     cout << result;
-     
-    return 0;
 }
 
-
-
-//   10 /10
-
-
+// 10 /10
 #include <iostream>
 using namespace std;
-
-int main() {
+int main(){
     string s, x, y;
     getline(cin, s);
     getline(cin, x);
     getline(cin, y);
 
     string result = "";
-    for (size_t i = 0; i < s.size(); ) {
+    for(size_t i = 0; i < s.size(); ){
         if (s.substr(i, x.size()) == x) {    // Từ vị trí i cắt ra được độ dài x.size nếu trùng với x thì thay thế thành y còn không thì i++
             result += y;
             i += x.size();
-        } else {
+        } 
+        else{
             result += s[i];
             i++;
         }
     }
-
     cout << result;
-    return 0;
 }
