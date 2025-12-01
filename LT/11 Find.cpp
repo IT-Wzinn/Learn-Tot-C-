@@ -4,9 +4,7 @@ int main(){
     string s = "Hello World";
     size_t pos = s.find("W");
     
-    if(pos != string::npos){                 
-        cout << "Vị trí: " << pos << endl;
-    }
+    if(pos != string::npos){ cout << "Vị trí: " << pos << endl; }
     else{cout << "Không có" << endl;}   
 
 //Tìm kiếm x trong chuỗi 
@@ -29,18 +27,18 @@ int main(){
     }
 
     cout << count;
-
+}
 
 LƯU Ý: 
-pos += 1; → Đếm cả các trường hợp lặp/chồng lên nhau.
-pos += x.length(); → Không đếm các trường hợp lặp/chồng lên nhau.
+pos += 1;        → Đếm cả các trường hợp lặp/chồng lên nhau.
+pos += x.size(); → Không đếm các trường hợp lặp/chồng lên nhau.
 
 Ví dụ minh họa:
 string s = "aaa";
 string x = "aa";
 
-Với pos += 1;          → Kết quả: 2
-Với pos += x.length(); → Kết quả: 1
+Với pos += 1;            → Kết quả: 2
+Với pos += x.length();   → Kết quả: 1
 
 ===================================================================================================================================================
 

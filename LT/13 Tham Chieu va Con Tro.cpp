@@ -74,7 +74,7 @@ void contro(int *x) {
 int main() {
     int a = 5;
     thamchieu(a);  // a = 100
-    contro(&a); // a = 100
+    contro(&a);   // a = 100
 }
 /*
 Kết luận: 
